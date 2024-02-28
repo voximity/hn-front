@@ -30,6 +30,10 @@ const item = (await res.json()) as ItemModel;
     )
   }
   <div class="flex flex-col gap-4 mt-3">
-    {item.comments.map((comment) => <Comment client:idle {...comment} />)}
+    {
+      item.comments.map((comment) => (
+        <Comment client:idle {...comment} op={item.user} />
+      ))
+    }
   </div>
 </Layout>
