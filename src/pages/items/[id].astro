@@ -10,7 +10,14 @@ const res = await fetch(`https://api.hnpwa.com/v0/item/${id}.json`);
 const item = (await res.json()) as ItemModel;
 ---
 
-<Layout title={`${item.title} - Hacker News`}>
+<Layout
+  title={`${item.title} - Hacker News`}
+  description={(item.user
+    ? `Post by ${item.user} on Hacker News`
+    : 'Post on Hacker News') +
+    ' • ' +
+    `${(item.points ?? 0).toLocaleString()} points`}
+>
   <FeedItem parent {...item} />
   <div class="flex flex-col gap-4 mt-3">
     {item.comments.map((comment) => <Comment client:idle {...comment} />)}

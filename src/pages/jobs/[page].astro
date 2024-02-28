@@ -2,4 +2,9 @@
 import Feed from '../../components/Feed.astro';
 ---
 
-<Feed feed="jobs" page={Astro.params.page ?? '1'} />
+<Feed
+  feed="jobs"
+  page={Astro.params.page ?? '1'}
+  title="Jobs"
+  description="Jobs on Hacker News"
+/>

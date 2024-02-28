@@ -2,4 +2,8 @@
 import Feed from '../../components/Feed.astro';
 ---
 
-<Feed feed="news" page={Astro.params.page ?? '1'} />
+<Feed
+  feed="news"
+  page={Astro.params.page ?? '1'}
+  description="Hacker News feed"
+/>
