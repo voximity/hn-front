@@ -37,6 +37,7 @@ const Comment = ({
       </div>
       <div
         {...longPress}
+        class="grow shrink basis-auto overflow-auto"
         onClick={() => {
           if (collapsed) setCollapsed(false);
         }}

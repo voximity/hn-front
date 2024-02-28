@@ -23,8 +23,15 @@ const data = (await res.json()) as FeedItemModel[];
   {description}
   {feed}
 >
-  <div class="flex flex-col gap-4">
-    {data.map((item) => <FeedItem {...item} />)}
+  <div class="flex flex-col gap-3">
+    {
+      data.map((item, i) => (
+        <>
+          {i !== 0 && <hr class="border-slate-800" />}
+          <FeedItem {...item} />
+        </>
+      ))
+    }
   </div>
   <Pagination root={`/${feed}`} page={Number(page)} />
 </Layout>
