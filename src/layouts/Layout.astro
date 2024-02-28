@@ -23,8 +23,8 @@ const feeds = ['news', 'newest', 'show', 'ask', 'jobs'];
   </head>
   <body class="dark:bg-gray-900 dark:text-slate-400">
     <div class="mx-auto px-4 py-4 max-w-screen-md">
-      <div class="flex items-center justify-between flex-col md:flex-row">
-        <h1 class="text-3xl text-slate-200 font-semibold my-3">
+      <div class="flex items-center justify-between flex-col md:flex-row my-3">
+        <h1 class="text-3xl text-slate-200 font-semibold">
           <a href="/">Hacker News</a>
         </h1>
         <div slot="header" class="flex gap-2 items-center justify-center">
@@ -48,6 +48,31 @@ const feeds = ['news', 'newest', 'show', 'ask', 'jobs'];
         </div>
       </div>
       <slot />
+      <div
+        class="flex items-start justify-between gap-3 text-slate-600 text-sm mt-3 font-mono"
+      >
+        <div class="flex flex-col">
+          <span>hn-front</span>
+          <span>
+            (c) 2024 <a
+              href="https://github.com/voximity"
+              class="transition hover:text-slate-400"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              voximity
+            </a>
+          </span>
+        </div>
+        <a
+          class="transition hover:text-slate-400"
+          href="https://github.com/voximity/hn-front"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          source
+        </a>
+      </div>
     </div>
   </body>
 </html>
