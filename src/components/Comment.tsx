@@ -20,7 +20,7 @@ const Comment = ({
   const toggle = () => {
     if (!collapsed && ref.current) {
       const rect = ref.current.getBoundingClientRect();
-      if (rect.top < window.scrollY) ref.current?.scrollIntoView();
+      if (rect.top < 0) ref.current?.scrollIntoView();
     }
     setCollapsed(!collapsed);
   };
