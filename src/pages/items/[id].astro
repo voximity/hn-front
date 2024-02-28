@@ -20,10 +20,10 @@ const item = (await res.json()) as ItemModel;
     `${(item.points ?? 0).toLocaleString()} points`}
 >
   <FeedItem parent {...item} />
+  <hr class="border-slate-800 my-3" />
   {
     item.content && (
       <>
-        <hr class="border-slate-800 my-3" />
         <Content content={item.content} />
         <hr class="border-slate-800 my-3" />
       </>

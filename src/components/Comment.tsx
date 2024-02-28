@@ -1,20 +1,37 @@
-import { useState } from 'preact/hooks';
+import { useRef, useState } from 'preact/hooks';
 import type { ItemModel } from '../models';
-import Dot from './Dot';
 import Content from './Content';
+import Dot from './Dot';
+import useLongPress from '../hooks/useLongPress';
 
 const Comment = ({ user, content, comments, time_ago, deleted }: ItemModel) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [collapsed, setCollapsed] = useState(deleted);
 
+  const toggle = () => {
+    if (!collapsed && ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      if (rect.top < window.scrollY) ref.current?.scrollIntoView();
+    }
+    setCollapsed(!collapsed);
+  };
+
+  const longPress = useLongPress(300, toggle);
+
   return (
-    <div class="flex">
+    <div ref={ref} class="flex">
       <div
         class="group pr-4 grow-0 shrink-0 basis-1 cursor-pointer"
-        onClick={() => setCollapsed((c) => !c)}
+        onClick={toggle}
       >
         <div class="bg-slate-700 h-full w-0.5 transition group-hover:bg-slate-500" />
       </div>
-      <div>
+      <div
+        {...longPress}
+        onClick={() => {
+          if (collapsed) setCollapsed(false);
+        }}
+      >
         <p class="text-sm text-slate-500 flex gap-2 items-center">
           <span class="font-mono">{deleted ? '[deleted]' : user}</span>
           <Dot />

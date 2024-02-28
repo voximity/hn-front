@@ -55,7 +55,7 @@ const formattedTime = new Date(time * 1000).toLocaleDateString('en-US', {
   <div class="flex gap-2 items-center">
     <span>{(points ?? 0).toLocaleString()} points</span>
     <Dot />
-    <span>{comments_count.toLocaleString()} comments</span>
+    <a href={`/items/${id}`}>{comments_count.toLocaleString()} comments</a>
     <Dot />
     <span title={formattedTime}>{time_ago}</span>
   </div>
