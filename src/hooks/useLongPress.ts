@@ -7,7 +7,6 @@ const useLongPress = (duration: number, callback: () => void) => {
     ev.stopPropagation();
 
     if (ref.current) clearTimeout(ref.current);
-    console.log('foo');
     ref.current = setTimeout(() => {
       if ('vibrate' in Navigator) (Navigator.vibrate as any)([150]);
       callback();
@@ -19,7 +18,7 @@ const useLongPress = (duration: number, callback: () => void) => {
     if (ref.current) clearTimeout(ref.current);
   };
 
-  return { onTouchStart, onTouchEnd };
+  return { onTouchStart, onTouchDrag: onTouchEnd, onTouchEnd };
 };
 
 export default useLongPress;
