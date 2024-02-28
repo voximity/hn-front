@@ -1,13 +1,16 @@
 ---
 import '@fontsource/fira-mono';
 import '@fontsource/inter';
+import Dot from '../components/Dot';
 
 interface Props {
   title: string;
   description: string;
+  feed?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, feed } = Astro.props;
+const feeds = ['news', 'newest', 'show', 'ask', 'jobs'];
 ---
 
 <!doctype html>
@@ -20,9 +23,30 @@ const { title, description } = Astro.props;
   </head>
   <body class="dark:bg-gray-900 dark:text-slate-400">
     <div class="mx-auto px-4 py-4 max-w-screen-md">
-      <h1 class="text-3xl text-slate-200 font-semibold my-3">
-        <a href="/">Hacker News</a>
-      </h1>
+      <div class="flex items-center justify-between">
+        <h1 class="text-3xl text-slate-200 font-semibold my-3">
+          <a href="/">Hacker News</a>
+        </h1>
+        <div slot="header" class="flex gap-2 items-center justify-center">
+          {
+            feeds.map((item, i) => (
+              <>
+                {i !== 0 && <Dot />}
+                <a
+                  href={`/${item}/1`}
+                  class={
+                    item === feed
+                      ? 'font-semibold text-slate-300'
+                      : 'transition hover:text-slate-300'
+                  }
+                >
+                  {item}
+                </a>
+              </>
+            ))
+          }
+        </div>
+      </div>
       <slot />
     </div>
   </body>

@@ -2,6 +2,8 @@
 import FeedItem from './FeedItem.astro';
 import Layout from '../layouts/Layout.astro';
 import type { FeedItemModel } from '../models';
+import Pagination from './Pagination.astro';
+import Dot from './Dot';
 
 interface Props {
   feed: string;
@@ -16,8 +18,13 @@ const res = await fetch(`https://api.hnpwa.com/v0/${feed}/${page}.json`);
 const data = (await res.json()) as FeedItemModel[];
 ---
 
-<Layout title={title ? `${title} - Hacker News` : 'Hacker News'} {description}>
+<Layout
+  title={title ? `${title} - Hacker News` : 'Hacker News'}
+  {description}
+  {feed}
+>
   <div class="flex flex-col gap-4">
     {data.map((item) => <FeedItem {...item} />)}
   </div>
+  <Pagination root={`/${feed}`} page={Number(page)} />
 </Layout>

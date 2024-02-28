@@ -1,0 +1,29 @@
+---
+interface Props {
+  root: string;
+  page: number;
+}
+
+const { root, page } = Astro.props;
+---
+
+<div class="flex items-center justify-center my-3">
+  <a
+    href={page !== 1 ? `${root}/${page - 1}` : undefined}
+    class={`border border-slate-700 rounded-md px-3 rounded-r-none border-r-0 transition hover:text-slate-300 ${page === 1 ? 'disabled' : ''}`}
+  >
+    Previous
+  </a>
+  <span class="border border-slate-700 px-6 font-semibold">Page {page}</span>
+  <a
+    href={`${root}/${page + 1}`}
+    class="border border-slate-700 rounded-md px-3 rounded-l-none border-l-0 transition hover:text-slate-300"
+  >
+    Next
+  </a>
+</div>
+<style>
+  .disabled {
+    @apply text-slate-600 select-none;
+  }
+</style>
