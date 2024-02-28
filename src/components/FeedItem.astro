@@ -1,0 +1,62 @@
+---
+import type { FeedItemModel } from '../models.d.ts';
+import Dot from './Dot';
+
+interface Props extends FeedItemModel {
+  parent?: boolean;
+}
+
+const {
+  parent,
+  id,
+  title,
+  url,
+  domain,
+  points,
+  comments_count,
+  user,
+  time,
+  time_ago,
+} = Astro.props;
+
+const formattedTime = new Date(time * 1000).toLocaleDateString('en-US', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<div class="flex flex-col border-b-slate-800">
+  <span class="text-slate-500 text-sm font-mono">{user}</span>
+  <div>
+    {
+      parent ? (
+        <span class="text-xl text-slate-300 mr-1">{title}</span>
+      ) : (
+        <a href={`/items/${id}`} class="text-xl text-slate-300 mr-1">
+          {title}
+        </a>
+      )
+    }
+    {
+      domain && (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-mono border border-slate-700 rounded text-slate-500 px-1 text-sm transition hover:text-slate-400 hover:border-slate-600"
+        >
+          {domain}
+        </a>
+      )
+    }
+  </div>
+  <div class="flex gap-2 items-center">
+    <span>{(points ?? 0).toLocaleString()} points</span>
+    <Dot />
+    <span>{comments_count.toLocaleString()} comments</span>
+    <Dot />
+    <span title={formattedTime}>{time_ago}</span>
+  </div>
+</div>

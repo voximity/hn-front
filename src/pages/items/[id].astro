@@ -1,0 +1,18 @@
+---
+import Comment from '../../components/Comment';
+import FeedItem from '../../components/FeedItem.astro';
+import Layout from '../../layouts/Layout.astro';
+import type { ItemModel } from '../../models';
+
+const { id } = Astro.params;
+
+const res = await fetch(`https://api.hnpwa.com/v0/item/${id}.json`);
+const item = (await res.json()) as ItemModel;
+---
+
+<Layout title={`${item.title} - Hacker News`}>
+  <FeedItem parent {...item} />
+  <div class="flex flex-col gap-4 mt-3">
+    {item.comments.map((comment) => <Comment client:idle {...comment} />)}
+  </div>
+</Layout>

@@ -1,0 +1,33 @@
+---
+import '@fontsource/fira-mono';
+import '@fontsource/inter';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body class="dark:bg-gray-900 dark:text-slate-400">
+    <div class="mx-auto px-4 py-4 max-w-screen-md">
+      <h1 class="text-3xl text-slate-200 font-semibold my-3">
+        <a href="/">Hacker News</a>
+      </h1>
+      <slot />
+    </div>
+  </body>
+</html>
+<style is:global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+</style>

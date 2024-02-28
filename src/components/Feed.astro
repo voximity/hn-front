@@ -1,0 +1,21 @@
+---
+import FeedItem from './FeedItem.astro';
+import Layout from '../layouts/Layout.astro';
+import type { FeedItemModel } from '../models';
+
+interface Props {
+  feed: string;
+  page: string;
+}
+
+const { feed, page } = Astro.props;
+
+const res = await fetch(`https://api.hnpwa.com/v0/${feed}/${page}.json`);
+const data = (await res.json()) as FeedItemModel[];
+---
+
+<Layout title="Hacker News">
+  <div class="flex flex-col gap-4">
+    {data.map((item) => <FeedItem {...item} />)}
+  </div>
+</Layout>
