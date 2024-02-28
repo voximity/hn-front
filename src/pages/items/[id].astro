@@ -1,5 +1,6 @@
 ---
 import Comment from '../../components/Comment';
+import Content from '../../components/Content';
 import FeedItem from '../../components/FeedItem.astro';
 import Layout from '../../layouts/Layout.astro';
 import type { ItemModel } from '../../models';
@@ -23,7 +24,7 @@ const item = (await res.json()) as ItemModel;
     item.content && (
       <>
         <hr class="border-slate-800 my-3" />
-        <p set:html={item.content} />
+        <Content content={item.content} />
         <hr class="border-slate-800 my-3" />
       </>
     )

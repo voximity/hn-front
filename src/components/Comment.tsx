@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks';
 import type { ItemModel } from '../models';
 import Dot from './Dot';
+import Content from './Content';
 
 const Comment = ({ user, content, comments, time_ago, deleted }: ItemModel) => {
   const [collapsed, setCollapsed] = useState(deleted);
@@ -27,10 +28,7 @@ const Comment = ({ user, content, comments, time_ago, deleted }: ItemModel) => {
         </p>
         {!collapsed && (
           <>
-            <div
-              class="flex flex-col gap-2 mt-1 [&_a]:text-blue-500 [&_pre]:whitespace-pre-wrap"
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
+            <Content content={content} />
             {comments.length !== 0 && (
               <div class="flex flex-col gap-2 mt-2">
                 {comments.map((comment) => (
