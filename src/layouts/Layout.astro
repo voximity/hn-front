@@ -2,6 +2,7 @@
 import '@fontsource/fira-mono';
 import '@fontsource/inter';
 import Dot from '../components/Dot';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -20,6 +21,7 @@ const feeds = ['news', 'newest', 'show', 'ask', 'jobs'];
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body class="dark:bg-gray-900 dark:text-slate-400">
     <div class="mx-auto px-4 py-4 max-w-screen-md">
@@ -74,10 +76,10 @@ const feeds = ['news', 'newest', 'show', 'ask', 'jobs'];
         </a>
       </div>
     </div>
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+    </style>
   </body>
 </html>
-<style is:global>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-</style>
