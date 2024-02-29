@@ -56,7 +56,7 @@ const Comment = ({
           <>
             <Content content={content} />
             {comments.length !== 0 && (
-              <div class="flex flex-col gap-2 mt-2">
+              <div class="flex flex-col gap-4 mt-4">
                 {comments.map((comment) => (
                   <Comment {...comment} op={op} />
                 ))}
