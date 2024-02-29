@@ -36,7 +36,7 @@ const Comment = ({
         <div class="bg-slate-700 h-full w-0.5 transition group-hover:bg-slate-500" />
       </div>
       <div {...longPress} class="grow shrink basis-auto overflow-auto">
-        <p class="text-sm text-slate-500 flex gap-2 items-center">
+        <p class="text-sm text-slate-500 flex gap-2 items-center select-none md:select-auto">
           <span class="font-mono">{deleted ? '[deleted]' : user}</span>
           {user && !deleted && user === op && (
             <span class="border rounded px-1 border-orange-500 text-orange-200 bg-orange-700/20">
