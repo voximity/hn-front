@@ -5,18 +5,23 @@ const useLongPress = (duration: number, callback: () => void) => {
 
   const onTouchStart = (ev: TouchEvent) => {
     ev.stopPropagation();
-    ev.preventDefault();
 
-    if (ref.current) clearTimeout(ref.current);
-    ref.current = setTimeout(() => {
+    const finish = () => {
       navigator.vibrate?.(50);
       callback();
-    }, duration);
+    };
+
+    if (duration === 0) {
+      finish();
+      return;
+    }
+
+    if (ref.current) clearTimeout(ref.current);
+    ref.current = setTimeout(finish, duration);
   };
 
   const onTouchEnd = (ev: TouchEvent) => {
     ev.stopPropagation();
-    ev.preventDefault();
 
     if (ref.current) clearTimeout(ref.current);
   };

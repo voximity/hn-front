@@ -25,7 +25,7 @@ const Comment = ({
     setCollapsed(!collapsed);
   };
 
-  const longPress = useLongPress(300, toggle);
+  const longPress = useLongPress(collapsed ? 0 : 300, toggle);
 
   return (
     <div ref={ref} class="flex">
@@ -35,13 +35,7 @@ const Comment = ({
       >
         <div class="bg-slate-700 h-full w-0.5 transition group-hover:bg-slate-500" />
       </div>
-      <div
-        {...longPress}
-        class="grow shrink basis-auto overflow-auto"
-        onClick={() => {
-          if (collapsed) setCollapsed(false);
-        }}
-      >
+      <div {...longPress} class="grow shrink basis-auto overflow-auto">
         <p class="text-sm text-slate-500 flex gap-2 items-center">
           <span class="font-mono">{deleted ? '[deleted]' : user}</span>
           {user && !deleted && user === op && (
